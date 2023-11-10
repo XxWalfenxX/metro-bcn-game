@@ -34,7 +34,7 @@ import LineaCuadradro from '../../components/LineaCuadradro.vue'
         v-bind:key="linea.properties.ID_LINIA"
         :name="linea.properties.NOM_LINIA"
         :color="linea.properties.COLOR_LINIA"
-        :link="linea.properties.NOM_LINIA"
+        :link="linea.properties.CODI_LINIA"
       />
     </div>
   </div>
