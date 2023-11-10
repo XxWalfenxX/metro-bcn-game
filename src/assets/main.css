@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #cbd5e1;
+}
+
+.font-arial {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #374151;
+  }
+}
+
+.full-screen {
+  height: calc(100vh - 72px); /* Alto completo de la ventana */
+}
+
+@media (min-width: 768px) {
+  .full-screen {
+    height: calc(100vh - 64px); /* Alto completo de la ventana */
+  }
+}
