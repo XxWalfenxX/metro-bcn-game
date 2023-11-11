@@ -2,7 +2,7 @@
 defineProps({
   name: String,
   color: String,
-  link: String
+  link: Number
 })
 </script>
 <template>
