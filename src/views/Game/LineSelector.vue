@@ -22,7 +22,7 @@ export default {
 import LineSelectComponent from "../../components/LineSelectComponent.vue"
 </script>
 <template>
-  <div class="px-4 mx-auto h-fit max-w-screen-xl text-center py-24 lg:py-56">
+  <div class="px-4 mx-auto full-screen max-w-screen-xl text-center py-24 lg:py-56">
     <h1
         class="mb-4 text-4xl font-extrabold tracking-tight leading-none dark:text-white md:text-5xl lg:text-6xl"
       >
