@@ -24,7 +24,7 @@ export default {
         });
 
         this.colorLinia = ref("after:border-[#" + this.estaciones.features[0].properties.COLOR_LINIA + "]");
-        console.log(this.estaciones);
+        //console.log(this.estaciones);
     },
     components: { LineComponent },
     methods: {
@@ -33,7 +33,8 @@ export default {
             let nombreIntroducidoNormalizado = this.nombreEstacionInput.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 
             // Obtener la parte de la palabra normalizada después del punto
-            let partesNombreEstacion = nombreEstacionNormalizado.split(/[.|]/);
+            let partesNombreEstacion = nombreEstacionNormalizado.split(/\s*[.|]\s*/);
+            //console.log(partesNombreEstacion);
             const parteDespuesDelPunto = partesNombreEstacion.length > 1 ? partesNombreEstacion[1] : partesNombreEstacion[0];
             if (nombreEstacionNormalizado == nombreIntroducidoNormalizado ) {
                 estacion.properties.encontrado = 'si'
