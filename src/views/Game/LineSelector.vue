@@ -19,7 +19,7 @@ export default {
 }
 </script>
 <script setup>
-import lineacuadradro from '../../components/LineaCuadradro.vue';
+import LineSelectComponent from "../../components/LineSelectComponent.vue"
 </script>
 <template>
   <div class="px-4 mx-auto h-fit max-w-screen-xl text-center py-24 lg:py-56">
@@ -29,7 +29,7 @@ import lineacuadradro from '../../components/LineaCuadradro.vue';
         Elige una liniea para empezar
       </h1>
     <div class="flex flex-wrap gap-5 justify-center">
-      <lineacuadradro
+      <LineSelectComponent
         v-for="linea in lineasMetro?.features"
         v-bind:key="linea.properties.ID_LINIA"
         :name="linea.properties.NOM_LINIA"
