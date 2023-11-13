@@ -23,9 +23,6 @@ export default {
     if (indexToDelete !== -1) {
       this.lineasMetro.features.splice(indexToDelete, 1);
     }
-
-
-    console.log(this.lineasMetro);
   }
 }
 </script>
