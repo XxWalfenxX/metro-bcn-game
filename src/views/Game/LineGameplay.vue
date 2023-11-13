@@ -8,7 +8,8 @@ export default {
         return {
             estaciones: null,
             colorLinia,
-            nombreEstacionInput: ""
+            nombreEstacionInput: "",
+            nombreEstacionInput2: ""
         };
     },
     async created() {
@@ -36,16 +37,23 @@ export default {
             let partesNombreEstacion = nombreEstacionNormalizado.split(/\s*[.|]\s*/);
             //console.log(partesNombreEstacion);
             const parteDespuesDelPunto = partesNombreEstacion.length > 1 ? partesNombreEstacion[1] : partesNombreEstacion[0];
-            if (nombreEstacionNormalizado == nombreIntroducidoNormalizado ) {
+            if (nombreEstacionNormalizado == nombreIntroducidoNormalizado) {
                 estacion.properties.encontrado = 'si'
                 this.nombreEstacionInput = ""
+                this.nombreEstacionInput2 = ""
             }
 
-            if (parteDespuesDelPunto == nombreIntroducidoNormalizado | nombreIntroducidoNormalizado == partesNombreEstacion[0] | nombreIntroducidoNormalizado == partesNombreEstacion[1] ) {
+            if (parteDespuesDelPunto == nombreIntroducidoNormalizado | nombreIntroducidoNormalizado == partesNombreEstacion[0] | nombreIntroducidoNormalizado == partesNombreEstacion[1]) {
                 estacion.properties.encontrado = 'si'
                 this.nombreEstacionInput = ""
+                this.nombreEstacionInput2 = ""
             }
             return estacion.properties.encontrado == 'si';
+        },
+        enviar(event){
+            if (event.keyCode === 13) {
+                this.nombreEstacionInput = this.nombreEstacionInput2
+            }
         }
     }
 
@@ -55,9 +63,8 @@ export default {
     <div class="flex mx-5 mt-5  justify-around">
         <LineComponent :name="estaciones?.features[0].properties.NOM_LINIA"
             :color="estaciones?.features[0].properties.COLOR_LINIA" />
-            <p
-        class="mb-4 text-4xl font-bold text-center tracking-tight leading-none dark:text-white md:text-5xl lg:text-6xl"
-      >00:00</p>
+        <p class="mb-4 text-4xl font-bold text-center tracking-tight leading-none dark:text-white md:text-5xl lg:text-6xl">
+            00:00</p>
     </div>
     <div class="flex items-center justify-center  flex-col">
         <ol class="flex items-center w-3/5 mb-5 mt-60">
@@ -73,9 +80,9 @@ export default {
             </li>
         </ol>
         <div class="mb-6">
-            <input type="text" id="estacion_input" v-model="nombreEstacionInput"
+            <input type="text" id="estacion_input" v-model="nombreEstacionInput2"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Introduce el nombre">
+                placeholder="Introduce el nombre" @keydown="enviar">
         </div>
     </div>
 </template>
