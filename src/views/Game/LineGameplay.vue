@@ -4,20 +4,13 @@ import Swal from 'sweetalert2'
 import LineComponent from "../../components/LineComponent.vue"
 export default {
 
-    mounted() {
-        this.iniciarContador();
-        this.tiempoInicio = Date.now();
-    },
-    unmounted() {
-        clearInterval(this.contador)
-    },
     data() {
-        const colorLinia = "";
         return {
             estaciones: null,
-            colorLinia,
+            colorLinia: "",
             nombreEstacionInput: "",
             nombreEstacionInput2: "",
+            longitudEstaciones: 0,
             tiempoRestante: 300, // 300 segundos = 5 minutos
             minutos: 5,
             segundos: 0,
@@ -36,11 +29,20 @@ export default {
 
         this.estaciones.features.forEach(estacion => {
             estacion.properties.encontrado = "no";
-            // Puedes asignar el valor que desees a la nueva propiedad
         });
+
+        this.longitudEstaciones = this.estaciones.features.length;
 
         this.colorLinia = ref("after:border-[#" + this.estaciones.features[0].properties.COLOR_LINIA + "]");
         //console.log(this.estaciones);
+    },
+    mounted() {
+        this.iniciarContador();
+        this.tiempoInicio = Date.now();
+
+    },
+    unmounted() {
+        clearInterval(this.contador)
     },
     components: { LineComponent },
     computed: {
@@ -123,7 +125,7 @@ export default {
                 this.informarTiempoTranscurrido()
                 Swal.fire({
                     icon: "success",
-                    title: "¡Lo has completado en " + this.tiempoTranscurrido+ "!",
+                    title: "¡Lo has completado en " + this.tiempoTranscurrido + "!",
                     allowEnterKey: false,
                     customClass: {
                         popup: 'dark:bg-gray-800',
@@ -133,7 +135,7 @@ export default {
                 clearInterval(this.contador);
             }
         }
-        
+
 
     }
 
@@ -148,20 +150,37 @@ export default {
     </div>
     <div class="flex items-center justify-center  flex-col">
         <ol class="flex items-center w-3/5 mb-5 mt-60">
-            <li class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block relative"
-                :class="[colorLinia]" v-for="estacion in estaciones?.features" :key="estacion.properties.ID_ESTACIO">
-                <div :style="`background-color: #${estacion.properties.COLOR_LINIA};`"
-                    class="flex items-center justify-center rounded-full h-5 w-5 shrink-0">
-                </div>
-                <p class="font-arial text-base font-normal absolute bottom-3 left-0 dark:text-white"
-                    style="transform-origin: 0 0; transform: rotate(300deg); white-space: nowrap;"
-                    v-if="shouldShowEstacion(estacion)">
-                    {{ estacion.properties.NOM_ESTACIO }} </p>
-                <p class="font-arial text-base font-normal absolute bottom-3 left-0 text-red-600"
-                    style="transform-origin: 0 0; transform: rotate(300deg); white-space: nowrap;"
-                    v-if="isInputDisabled & estacion.properties.encontrado == 'no'">
-                    {{ estacion.properties.NOM_ESTACIO }} </p>
-            </li>
+            <template v-for="(estacion, index) in estaciones?.features" :key="estacion.properties.ID_ESTACIO">
+                <li class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:inline-block relative"
+                    :class="[colorLinia]" v-if="index === longitudEstaciones - 1">
+                    <div :style="`background-color: #${estacion.properties.COLOR_LINIA};`"
+                        class="flex items-center justify-center rounded-full h-5 w-5 shrink-0">
+                    </div>
+                    <p class="font-arial text-base font-normal absolute bottom-3 left-0 dark:text-white"
+                        style="transform-origin: 0 0; transform: rotate(300deg); white-space: nowrap;"
+                        v-if="shouldShowEstacion(estacion)">
+                        {{ estacion.properties.NOM_ESTACIO }} </p>
+                    <p class="font-arial text-base font-normal absolute bottom-3 left-0 text-red-600"
+                        style="transform-origin: 0 0; transform: rotate(300deg); white-space: nowrap;"
+                        v-if="isInputDisabled & estacion.properties.encontrado == 'no'">
+                        {{ estacion.properties.NOM_ESTACIO }} </p>
+                </li>
+                <li class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block relative"
+                    :class="[colorLinia]" v-else>
+                    <div :style="`background-color: #${estacion.properties.COLOR_LINIA};`"
+                        class="flex items-center justify-center rounded-full h-5 w-5 shrink-0">
+                    </div>
+                    <p class="font-arial text-base font-normal absolute bottom-3 left-0 dark:text-white"
+                        style="transform-origin: 0 0; transform: rotate(300deg); white-space: nowrap;"
+                        v-if="shouldShowEstacion(estacion)">
+                        {{ estacion.properties.NOM_ESTACIO }} </p>
+                    <p class="font-arial text-base font-normal absolute bottom-3 left-0 text-red-600"
+                        style="transform-origin: 0 0; transform: rotate(300deg); white-space: nowrap;"
+                        v-if="isInputDisabled & estacion.properties.encontrado == 'no'">
+                        {{ estacion.properties.NOM_ESTACIO }} </p>
+                </li>
+            </template>
+
         </ol>
         <div class="mb-6">
             <input type="text" id="estacion_input" v-model="nombreEstacionInput2" :disabled="isInputDisabled"
