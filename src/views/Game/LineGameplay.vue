@@ -151,7 +151,7 @@ export default {
     <div class="flex items-center justify-center  flex-col">
         <ol class="flex items-center w-3/5 mb-5 mt-60">
             <template v-for="(estacion, index) in estaciones?.features" :key="estacion.properties.ID_ESTACIO">
-                <li class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:inline-block relative"
+                <li class="flex w-fit items-center relative"
                     :class="[colorLinia]" v-if="index === longitudEstaciones - 1">
                     <div :style="`background-color: #${estacion.properties.COLOR_LINIA};`"
                         class="flex items-center justify-center rounded-full h-5 w-5 shrink-0">
