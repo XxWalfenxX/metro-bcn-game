@@ -3,7 +3,10 @@
 ¿Podrás escribir todas las estaciones del metro de Barcelona antes que se acabe el tiempo?
 
 ## Imagenes
-
+![Inicio](https://github.com/XxWalfenxX/metro-bcn-game/blob/main/readme/Inicio.png?raw=true)
+![Elegir Linea](https://github.com/XxWalfenxX/metro-bcn-game/blob/main/readme/ElegirLinea.png?raw=true)
+![Gameplay1](https://github.com/XxWalfenxX/metro-bcn-game/blob/main/readme/L1-1.png?raw=true)
+![Gameplay2](https://github.com/XxWalfenxX/metro-bcn-game/blob/main/readme/L1-2.png?raw=true)
 
 ## Configuración IDE recomendada
 
