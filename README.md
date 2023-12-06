@@ -1,34 +1,39 @@
-# metro-bcn-game
+# Adivina las estaciones de metro de Barcelona
 
-This template should help get you started developing with Vue 3 in Vite.
+¿Podrás escribir todas las estaciones del metro de Barcelona antes que se acabe el tiempo?
 
-## Recommended IDE Setup
+## Imagenes
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Customize configuration
+## Configuración IDE recomendada
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (y deshabilitar Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Project Setup
+## Personalizar la configuración
+
+Copiar archivo .env.example a .env e introducir las claves API de [TMB Developers](https://developer.tmb.cat/)
+
+Mirar [Referencia de configuración de Vite](https://vitejs.dev/config/).
+
+## Configuración del Proyecto
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compilar y recargar en caliente para desarrollo
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Compilar y minimizar para producción
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Revisar con [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
